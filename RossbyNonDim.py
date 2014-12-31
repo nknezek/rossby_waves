@@ -20,7 +20,6 @@ Omega = np.pi/(24.0*3600.0) # rotation rate in rad/s
 rho = 1e5  # density in kg/m^3
 
 # Non-Dimensionalized Parameters
-P_star = rho * R**2 * Omega**2
 
 rmin = 0.99
 rmax = 1.0
@@ -31,20 +30,20 @@ ModelVariables = ('uk','ul','um','p')
 
 # Size of Matricies
 Sizeuk = (Nk+2)*Nl
-Sizeul = Nk*(Nl+2)
+Sizeul = Nk*Nl
 Sizeum = Nk*Nl
-Sizep = Nk*Nl
+Sizep = Nk*(Nl+2)
 SizeM = Sizeuk+Sizeul+Sizeum+Sizep
 
 # Create model parameter vectors
 dr = (rmax-rmin)/(Nk+1)
 r = np.linspace(rmin-dr/2,rmax+dr/2,num=Nk+2)
-rb = np.linspace(rmin-dr,rmax,num=Nk+2)
-rt = np.linspace(rmin,rmax+dr,num=Nk+2)
+rm = np.linspace(rmin-dr,rmax,num=Nk+2)
+rp = np.linspace(rmin,rmax+dr,num=Nk+2)
 dt = np.pi/(Nl+1)
-t = np.linspace(-dt/2,np.pi+dt/2,num=Nl+2)
-tb = np.linspace(-dt,np.pi,num=Nl+2)
-tt = np.linspace(0,np.pi+dt,num=Nl+2)
+t = np.linspace(-dt/2,np.pi+dt/2,num=Nl)
+tm = np.linspace(-dt,np.pi,num=Nl)
+tp = np.linspace(0,np.pi+dt,num=Nl)
 
 
 # print r
